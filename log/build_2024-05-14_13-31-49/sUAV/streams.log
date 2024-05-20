@@ -1,0 +1,53 @@
+[1.261s] Invoking command in '/home/mae-emrl3172/ros2_ws/build/sUAV': PYTHONPATH=/home/mae-emrl3172/ros2_ws/build/sUAV/prefix_override:/home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/mae-emrl3172/ros2_ws/build/sUAV/build
+[1.725s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[1.725s]   warnings.warn(
+[1.782s] running develop
+[1.782s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[1.782s]   warnings.warn(
+[2.119s] Removing /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV.egg-link (link to .)
+[2.196s] Invoked command in '/home/mae-emrl3172/ros2_ws/build/sUAV' returned '0': PYTHONPATH=/home/mae-emrl3172/ros2_ws/build/sUAV/prefix_override:/home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --uninstall --editable --build-directory /home/mae-emrl3172/ros2_ws/build/sUAV/build
+[2.201s] Invoking command in '/home/mae-emrl3172/ros2_ws/src/sUAV': PYTHONPATH=/home/mae-emrl3172/ros2_ws/build/sUAV/prefix_override:/home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/sUAV build --build-base /home/mae-emrl3172/ros2_ws/build/sUAV/build install --record /home/mae-emrl3172/ros2_ws/build/sUAV/install.log --install-scripts $base/lib/sUAV --single-version-externally-managed install_data --force
+[2.686s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[2.686s]   warnings.warn(
+[2.704s] running egg_info
+[2.706s] writing ../../build/sUAV/sUAV.egg-info/PKG-INFO
+[2.706s] writing dependency_links to ../../build/sUAV/sUAV.egg-info/dependency_links.txt
+[2.707s] writing entry points to ../../build/sUAV/sUAV.egg-info/entry_points.txt
+[2.707s] writing requirements to ../../build/sUAV/sUAV.egg-info/requires.txt
+[2.708s] writing top-level names to ../../build/sUAV/sUAV.egg-info/top_level.txt
+[2.713s] reading manifest file '../../build/sUAV/sUAV.egg-info/SOURCES.txt'
+[2.715s] writing manifest file '../../build/sUAV/sUAV.egg-info/SOURCES.txt'
+[2.715s] running build
+[2.716s] running build_py
+[2.716s] creating /home/mae-emrl3172/ros2_ws/build/sUAV/build
+[2.716s] creating /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib
+[2.717s] creating /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV
+[2.717s] copying sUAV/lidar_node.py -> /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV
+[2.717s] copying sUAV/pixhawk_node.py -> /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV
+[2.718s] copying sUAV/pub_test.py -> /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV
+[2.718s] copying sUAV/sub_test.py -> /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV
+[2.719s] copying sUAV/zed_node.py -> /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV
+[2.720s] copying sUAV/__init__.py -> /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV
+[2.720s] running install
+[2.721s] running install_lib
+[2.722s] creating /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV
+[2.723s] copying /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV/lidar_node.py -> /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV
+[2.723s] copying /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV/pixhawk_node.py -> /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV
+[2.724s] copying /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV/pub_test.py -> /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV
+[2.724s] copying /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV/sub_test.py -> /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV
+[2.724s] copying /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV/zed_node.py -> /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV
+[2.724s] copying /home/mae-emrl3172/ros2_ws/build/sUAV/build/lib/sUAV/__init__.py -> /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV
+[2.725s] byte-compiling /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV/lidar_node.py to lidar_node.cpython-310.pyc
+[2.726s] byte-compiling /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV/pixhawk_node.py to pixhawk_node.cpython-310.pyc
+[2.730s] byte-compiling /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV/pub_test.py to pub_test.cpython-310.pyc
+[2.730s] byte-compiling /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV/sub_test.py to sub_test.cpython-310.pyc
+[2.730s] byte-compiling /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV/zed_node.py to zed_node.cpython-310.pyc
+[2.732s] byte-compiling /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV/__init__.py to __init__.cpython-310.pyc
+[2.733s] running install_data
+[2.733s] copying resource/sUAV -> /home/mae-emrl3172/ros2_ws/install/sUAV/share/ament_index/resource_index/packages
+[2.733s] copying package.xml -> /home/mae-emrl3172/ros2_ws/install/sUAV/share/sUAV
+[2.734s] running install_egg_info
+[2.738s] Copying ../../build/sUAV/sUAV.egg-info to /home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages/sUAV-0.0.0-py3.10.egg-info
+[2.740s] running install_scripts
+[2.786s] writing list of installed files to '/home/mae-emrl3172/ros2_ws/build/sUAV/install.log'
+[2.853s] Invoked command in '/home/mae-emrl3172/ros2_ws/src/sUAV' returned '0': PYTHONPATH=/home/mae-emrl3172/ros2_ws/build/sUAV/prefix_override:/home/mae-emrl3172/ros2_ws/install/sUAV/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/sUAV build --build-base /home/mae-emrl3172/ros2_ws/build/sUAV/build install --record /home/mae-emrl3172/ros2_ws/build/sUAV/install.log --install-scripts $base/lib/sUAV --single-version-externally-managed install_data --force
