@@ -1,1 +1,0 @@
-/home/mae-emrl3172/ros2_ws/build/zed_wrapper/ament_cmake_environment_hooks/local_setup.sh
