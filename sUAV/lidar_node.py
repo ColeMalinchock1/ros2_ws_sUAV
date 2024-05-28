@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import PointCloud2
 from cv_bridge import CvBridge
 import cv2 as cv
 import numpy as np
@@ -25,9 +25,7 @@ def main(args = None):
 
     rclpy.init(args = args)
     node = Node("lidar_node")
-    zed_img_subscription = node.create_subscription(Image, '~/cyglidar_ws/scan_image', image_callback, 5)
-
-    
+    img_subscription = node.create_subscription(PointCloud2, 'scan_3D', image_callback, 5)
 
     thread = threading.Thread(target=rclpy.spin, args=(node, ), daemon=True)
     thread.start()
