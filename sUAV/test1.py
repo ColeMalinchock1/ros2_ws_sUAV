@@ -57,7 +57,8 @@ def Parser(data):
 
 
 ser = serial.Serial( # Port settings
-port= '/dev/ttyUSB0',
+# port= '/dev/ttyUSB0',
+port='COM5',
 baudrate=115200,
 parity=serial.PARITY_NONE,
 stopbits=serial.STOPBITS_ONE,
