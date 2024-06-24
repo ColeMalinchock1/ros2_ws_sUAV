@@ -1,22 +1,31 @@
 #!/usr/bin/env python
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 from std_msgs.msg import Int64
 import threading
+from px4_msgs.msg import FailsafeFlags, VehicleStatus, OnboardComputerStatus
 
 global test_data
 test_data = 0
 
 def callback(data):
     global test_data
-    test_data = data.data
+    test_data = data
                 
 def main(args=None):
     global test_data
 
     rclpy.init(args=args)
-    node = Node("sub_test_node")
-    node.create_subscription(Int64, "test_topic", callback, 1)
+
+    qos_profile = QoSProfile(
+        reliability = QoSReliabilityPolicy.BEST_EFFORT,
+        history = QoSHistoryPolicy.KEEP_LAST,
+        depth = 5
+    )
+
+    node = Node("pixhawk_node")
+    node.create_subscription(VehicleStatus, "/fmu/out/vehicle_status", callback, qos_profile)
 
     thread = threading.Thread(target=rclpy.spin, args=(node, ), daemon=True)
     thread.start()
