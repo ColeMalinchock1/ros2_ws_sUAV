@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy, DurabilityPolicy
 from px4_msgs.msg import OffboardControlMode, TrajectorySetpoint, VehicleCommand, VehicleLocalPosition, VehicleStatus
+from std_msgs.msg import Float64MultiArray
 
 
 class OffboardControl(Node):
@@ -27,21 +28,33 @@ class OffboardControl(Node):
             TrajectorySetpoint, '/fmu/in/trajectory_setpoint', qos_profile)
         self.vehicle_command_publisher = self.create_publisher(
             VehicleCommand, '/fmu/in/vehicle_command', qos_profile)
+        self.vehicle_local_position_publisher = self.create_publisher(
+            Float64MultiArray, 'current_pos_topic', 1
+        )
 
         # Create subscribers
         self.vehicle_local_position_subscriber = self.create_subscription(
             VehicleLocalPosition, '/fmu/out/vehicle_local_position', self.vehicle_local_position_callback, qos_profile)
         self.vehicle_status_subscriber = self.create_subscription(
             VehicleStatus, '/fmu/out/vehicle_status', self.vehicle_status_callback, qos_profile)
+        self.ui_subscriber = self.create_subscription(
+            Float64MultiArray, 'ui_topic', self.set_setpoint, 1
+        )
 
         # Initialize variables
         self.offboard_setpoint_counter = 0
         self.vehicle_local_position = VehicleLocalPosition()
         self.vehicle_status = VehicleStatus()
-        self.takeoff_height = -5.0
+        self.x_setpoint = self.y_setpoint = self.z_setpoint = None
 
         # Create a timer to publish control commands
         self.timer = self.create_timer(0.1, self.timer_callback)
+
+    def set_setpoint(self, setpoint):
+        """Sets the setpoint from the UI node"""
+        self.x_setpoint = setpoint.data[0] * -1.0
+        self.y_setpoint = setpoint.data[1] * -1.0
+        self.z_setpoint = setpoint.data[2] * -1.0
 
     def vehicle_local_position_callback(self, vehicle_local_position):
         """Callback function for vehicle_local_position topic subscriber."""
@@ -93,6 +106,15 @@ class OffboardControl(Node):
         msg.timestamp = int(self.get_clock().now().nanoseconds / 1000)
         self.trajectory_setpoint_publisher.publish(msg)
         self.get_logger().info(f"Publishing position setpoints {[x, y, z]}")
+    
+    def publish_current_position(self):
+        """Publish the current position to the UI node"""
+        msg = Float64MultiArray()
+        msg.data = [0.0, 0.0, 0.0]
+        msg.data[0] = self.vehicle_local_position.x * -1.0
+        msg.data[1] = self.vehicle_local_position.y * -1.0
+        msg.data[2] = self.vehicle_local_position.z * -1.0
+        self.vehicle_local_position_publisher.publish(msg)
 
     def publish_vehicle_command(self, command, **params) -> None:
         """Publish a vehicle command."""
@@ -120,13 +142,15 @@ class OffboardControl(Node):
         if self.offboard_setpoint_counter == 10:
             self.engage_offboard_mode()
             self.arm()
-            
-        if self.vehicle_local_position.z > self.takeoff_height and self.vehicle_status.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
-            self.publish_position_setpoint(0.0, 0.0, self.takeoff_height)
+        
+        if self.x_setpoint is not None and self.y_setpoint is not None and self.z_setpoint is not None: 
+            self.publish_current_position()
+            if self.vehicle_status.nav_state == VehicleStatus.NAVIGATION_STATE_OFFBOARD:
+                self.publish_position_setpoint(self.x_setpoint, self.y_setpoint, self.z_setpoint)
 
-        elif self.vehicle_local_position.z <= self.takeoff_height:
-            self.land()
-            exit(0)
+            if abs(self.vehicle_local_position.x - self.x_setpoint) < 0.2 and abs(self.vehicle_local_position.y - self.y_setpoint) < 0.2 and abs(self.vehicle_local_position.z - self.z_setpoint) < 0.2:
+                self.land()
+                exit(0)
 
         if self.offboard_setpoint_counter < 11:
             self.offboard_setpoint_counter += 1
